@@ -47,7 +47,9 @@ const ChannelsInfo = ({ categories }) => {
                 <p className='channels__selection-info-brodcast-time'>
                   <strong>Broadcast time:</strong>{' '}
                   <span>
-                    {moment(programmeEmbedded.broadcastDateTime.commissioning).format('LT')}
+                    {moment(programmeEmbedded.broadcastDateTime.commissioning)
+                      .utc()
+                      .format('LT')}
                   </span>
                 </p>
 
