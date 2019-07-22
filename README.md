@@ -6,8 +6,6 @@ Run
 npm install
 ```
 
-In the project directory in a separate terminal, first run:
-
 Then run:
 
 ```
