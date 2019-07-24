@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 
 import ChannelsInfo from '../src/components/ChannelsInfo';
 import ErrorHandler from '../src/components/ErrorHandler';
 import Header from '../src/components/Header';
 import SelectChannel from '../src/components/SelectChannel';
+
 class Channels extends Component {
   state = {
     categories: [],
@@ -23,14 +24,14 @@ class Channels extends Component {
 
   fetchProgrammes = () => {
     const { channels } = this.state;
-    Axios.get(
-      `http://discovery.hubsvc.itv.com/platform/itvonline/ctv/programmes?channelId=${channels}&broadcaster=itv&features=hls,aes`,
-      {
+    const url = `http://discovery.hubsvc.itv.com/platform/itvonline/ctv/programmes?channelId=${channels}&broadcaster=itv&features=hls,aes`;
+
+    axios
+      .get(url, {
         headers: {
           Accept: 'application/vnd.itv.hubsvc.programme.v3+hal+json; charset=UTF-8'
         }
-      }
-    )
+      })
       .then(res => this.setState({ categories: res.data._embedded.programmes }))
       .catch(err => this.setState({ showError: true }));
   };

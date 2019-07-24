@@ -10,10 +10,13 @@ const ChannelsInfo = ({ categories }) => {
         categories.map(programme => {
           const programmeEmbedded = programme._embedded.latestProduction;
           const episodes = programmeEmbedded.episode ? programmeEmbedded.episode : 'N/A';
+          let href = programmeEmbedded._links.image.href;
+          href = href.replace('{quality}', 80);
+          href = href.replace('{width}', 400);
 
           return (
             <div key={programme.id} className='row channels__selection-info-wrapper'>
-              <img className='col-md-4' alt={''} src={programmeEmbedded._links.image.href} />
+              <img className='col-md-4' alt={''} src={href} />
               <div className='col-md-8'>
                 <h2 className='channels__selection-info-title'>{programme.title}</h2>
                 <p className='channels__selection-info-synopses'>{programme.synopses.ninety}</p>
